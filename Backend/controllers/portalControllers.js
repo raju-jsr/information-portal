@@ -2,9 +2,23 @@ const aSyncHandler = require("express-async-handler");
 const { T1, T2 } = require("../models/bikeModel");
 
 // -------------------------------------------------------------------
+// @Des - Get list of all the bikes
+// @Route - GET /portal/bike/details
+// @Access - Public
+// -------------------------------------------------------------------
+
+const getAllBikeDetails = aSyncHandler(async (req, res) => {
+  const bikeDetails = await T1.find();
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).json(bikeDetails);
+});
+
+// -------------------------------------------------------------------
 // @Des - Create a new entry of bike
 // @Route - POST /portal/bike/details
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const createBikeEntry = aSyncHandler(async (req, res) => {
@@ -44,7 +58,7 @@ const createBikeEntry = aSyncHandler(async (req, res) => {
 // -------------------------------------------------------------------
 // @Des - Update entry of bike
 // @Route - PUT /portal/bike/details/:id
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const updateBikeEntry = aSyncHandler(async (req, res) => {
@@ -86,7 +100,7 @@ const updateBikeEntry = aSyncHandler(async (req, res) => {
 // -------------------------------------------------------------------
 // @Des - Delete an entry of bike
 // @Route - DELETE /portal/bike/details/:id
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const deleteBikeEntry = aSyncHandler(async (req, res) => {
@@ -103,9 +117,29 @@ const deleteBikeEntry = aSyncHandler(async (req, res) => {
 });
 
 // -------------------------------------------------------------------
+// @Des - Get Bike Specs
+// @Route - GET /portal/bike/specs/:id
+// @Access - Public
+// -------------------------------------------------------------------
+
+const getBikeSpecs = aSyncHandler(async (req, res) => {
+  const bikeDetail = await T2.findById(req.params.id);
+
+  if (!bikeDetail) {
+    res.status(404);
+    throw new Error("Bike Model Not present in Database");
+  }
+
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).json(bikeDetail);
+});
+
+// -------------------------------------------------------------------
 // @Des - Create a new entry of bike specifications
 // @Route - POST /portal/bike/specs
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const createBikeSpecEntry = aSyncHandler(async (req, res) => {
@@ -140,7 +174,7 @@ const createBikeSpecEntry = aSyncHandler(async (req, res) => {
 // -------------------------------------------------------------------
 // @Des - Update entry of bike's specs
 // @Route - PUT /portal/bike/specs/:id
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const updateBikeSpecEntry = aSyncHandler(async (req, res) => {
@@ -176,7 +210,7 @@ const updateBikeSpecEntry = aSyncHandler(async (req, res) => {
 // -------------------------------------------------------------------
 // @Des - Delete an entry of bike
 // @Route - DELETE /portal/bike/spec/:id
-// @Access - Public
+// @Access - Private
 // -------------------------------------------------------------------
 
 const deleteBikeSpec = aSyncHandler(async (req, res) => {
@@ -193,8 +227,10 @@ const deleteBikeSpec = aSyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getAllBikeDetails,
   createBikeEntry,
   updateBikeEntry,
+  getBikeSpecs,
   createBikeSpecEntry,
   updateBikeSpecEntry,
   deleteBikeSpec,

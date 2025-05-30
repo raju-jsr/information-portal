@@ -5,17 +5,23 @@ const {
   updateBikeSpecEntry,
   deleteBikeEntry,
   deleteBikeSpec,
+  getAllBikeDetails,
+  getBikeSpecs,
 } = require("../controllers/portalControllers");
 
 const express = require("express");
 const router = express.Router();
 
-router.route("/details").post(createBikeEntry);
+router.route("/details").post(createBikeEntry).get(getAllBikeDetails);
 
 router.route("/details/:id").put(updateBikeEntry).delete(deleteBikeEntry);
 
 router.route("/specs").post(createBikeSpecEntry);
 
-router.route("/specs/:id").put(updateBikeSpecEntry).delete(deleteBikeSpec);
+router
+  .route("/specs/:id")
+  .put(updateBikeSpecEntry)
+  .delete(deleteBikeSpec)
+  .get(getBikeSpecs);
 
 module.exports = router;

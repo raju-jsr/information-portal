@@ -16,6 +16,7 @@ export class HeaderComponent {
   }
 
   routetoScreen(val: string) {
+    this.homeScreenService.updateScreenMode(val);
     this.homeScreenService.updateScreenStatus(false);
   }
 }

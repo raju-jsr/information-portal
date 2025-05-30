@@ -1,0 +1,27 @@
+.heading {
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mat-mdc-table {
+  background: transparent !important;
+  border: 1px solid white;
+}
+
+.mat-mdc-header-row {
+  color: white;
+}
+
+.mat-mdc-row {
+  color: white;
+}
+
+.matTableIcon {
+  background: rgba(255, 255, 255, 0.589);
+  transition: 0.5s;
+}
+
+.matTableIcon:hover {
+  background: rgba(255, 255, 255, 0.829);
+}
