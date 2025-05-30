@@ -29,7 +29,7 @@
 .screen-root {
   min-height: 80vh;
   width: 70%;
-  background-color: #fff;
+  background: transparent;
   position: absolute;
   left: 15%;
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { HomeScreenService } from '../../services/home-screen.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  homeScreenService = inject(HomeScreenService);
+
   routeHome() {
-    console.log('Banner Clicked');
+    this.homeScreenService.updateScreenStatus(true);
+  }
+
+  routetoScreen(val: string) {
+    this.homeScreenService.updateScreenStatus(false);
   }
 }

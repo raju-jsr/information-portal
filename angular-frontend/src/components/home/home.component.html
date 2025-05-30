@@ -1,5 +1,7 @@
 <div class="screen">
   <app-header />
+
+  @if(ishomeScreenOnline() === true) {
   <div class="content-container">
     <h1>Welcome to Rider's Paradise</h1>
     <p>
@@ -7,8 +9,7 @@
       jacket to top box. All accessories would be available all under sane roof
     </p>
   </div>
-
-  <!-- <div class="screen-root">
-
-  </div> -->
+  } @else {
+  <div class="screen-root"></div>
+  }
 </div>
