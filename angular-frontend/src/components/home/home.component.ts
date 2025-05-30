@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',  
+  imports: [HeaderComponent],
 })
 export class HomeComponent {
-
-
-  routeHome() {
-    console.log("Banner Clicked");
-  }
 
 }
