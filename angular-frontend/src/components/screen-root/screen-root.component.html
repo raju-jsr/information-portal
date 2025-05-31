@@ -1,5 +1,7 @@
 @if(screenMode === 'MOTORBIKES'){
 <app-motorbike-root />
+} @else if (screenMode === 'ADMIN') {
+    <app-admin-root />
 } @else {
 <h1>Incorrect Option Selected</h1>
 }

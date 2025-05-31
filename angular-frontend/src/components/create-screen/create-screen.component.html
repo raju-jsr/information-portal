@@ -1,0 +1,27 @@
+<div class="form-container">
+  <form [formGroup]="form">
+    <h2>NEW BIKE ENTRY</h2>
+    <p>Please enter all the information correctly.....</p>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="bikeModel">Model of Bike</label>
+        <input
+          id="bikeModel"
+          type="bikeModel"
+          name="bikeModel"
+          formControlName="bikeModel"
+        />
+      </div>
+      <div class="form-element">
+        <label for="parentCompany">Parent Company</label>
+        <input
+          id="parentCompany"
+          type="parentCompany"
+          name="parentCompany"
+          formControlName="parentCompany"
+        />
+      </div>
+    </div>
+  </form>
+</div>

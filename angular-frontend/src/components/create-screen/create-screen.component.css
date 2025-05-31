@@ -1,0 +1,15 @@
+.form-container {
+  color: #fff;
+  text-align: left;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+
+.form-group {
+  justify-content: space-between;
+}
+
+.form-group .form-element {
+  display: inline-block;
+}

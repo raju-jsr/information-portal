@@ -1,0 +1,20 @@
+.admin-root {
+  color: #fff;
+  text-align: left;
+  max-width: 60%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.list h2 {
+  padding-bottom: 50px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+.list h2:hover {
+  background: rgba(255, 255, 255, 0.178);
+}

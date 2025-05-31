@@ -1,0 +1,20 @@
+@if(screenMode === 'DEFAULT'){
+<div class="admin-root">
+  <div class="list">
+    <h2 (click)="menuItemClicked('CREATE')">
+      <mat-icon class="menu-icon">add</mat-icon> CREATE A BIKE ENTRY
+    </h2>
+    <h2 (click)="menuItemClicked('UPDATE')">
+      <mat-icon class="menu-icon">app_registration</mat-icon> UPDATE A BIKE
+      ENTRY
+    </h2>
+    <h2 (click)="menuItemClicked('DELETE')">
+      <mat-icon class="menu-icon">delete</mat-icon> DELETE A BIKE ENTRY
+    </h2>
+  </div>
+</div>
+}@else if(screenMode === 'CREATE') {
+<app-create-screen />
+}@else{
+<h2>INCORRECT CHOICE</h2>
+}
