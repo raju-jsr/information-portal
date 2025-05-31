@@ -1,11 +1,10 @@
 <div class="form-container">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="OnSubmit()">
     <h2>NEW BIKE ENTRY</h2>
-    <p>Please enter all the information correctly.....</p>
 
     <div class="form-group">
       <div class="form-element">
-        <label for="bikeModel">Model of Bike</label>
+        <label for="bikeModel">Model of Bike :</label>
         <input
           id="bikeModel"
           type="bikeModel"
@@ -14,7 +13,7 @@
         />
       </div>
       <div class="form-element">
-        <label for="parentCompany">Parent Company</label>
+        <label for="parentCompany">Parent Company :</label>
         <input
           id="parentCompany"
           type="parentCompany"
@@ -23,5 +22,108 @@
         />
       </div>
     </div>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="launchYear">Year of Launch :</label>
+        <input
+          id="launchYear"
+          type="launchYear"
+          name="launchYear"
+          formControlName="launchYear"
+        />
+      </div>
+      <div class="form-element">
+        <label for="price">EX Showroom Price :</label>
+        <input id="price" type="price" name="price" formControlName="price" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="fuelType">Fuel Type :</label>
+        <input
+          id="fuelType"
+          type="fuelType"
+          name="fuelType"
+          formControlName="fuelType"
+        />
+      </div>
+      <div class="form-element">
+        <label for="bikeType">Type of Bike :</label>
+        <input
+          id="bikeType"
+          type="bikeType"
+          name="bikeType"
+          formControlName="bikeType"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="cubicCapacity">Cubic Capacity :</label>
+        <input
+          id="cubicCapacity"
+          type="cubicCapacity"
+          name="cubicCapacity"
+          formControlName="cubicCapacity"
+        />
+      </div>
+      <div class="form-element">
+        <label for="weight">Weight of Bike :</label>
+        <input
+          id="weight"
+          type="weight"
+          name="weight"
+          formControlName="weight"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="torque">Bike's Torque :</label>
+        <input
+          id="torque"
+          type="torque"
+          name="torque"
+          formControlName="torque"
+        />
+      </div>
+      <div class="form-element">
+        <label for="horsePower">Horse Power of Bike :</label>
+        <input
+          id="horsePower"
+          type="horsePower"
+          name="horsePower"
+          formControlName="horsePower"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-element">
+        <label for="mileage">Bike's Mileage :</label>
+        <input
+          id="mileage"
+          type="mileage"
+          name="mileage"
+          formControlName="mileage"
+        />
+      </div>
+      <div class="form-element">
+        <label for="gears">No of Gears :</label>
+        <input id="gears" type="gears" name="gears" formControlName="gears" />
+      </div>
+    </div>
+
+    <div class="form-button">
+      <button mat-raised-button>SUBMIT</button>
+    </div>
+
+    @if (form.touched && form.invalid) {
+    <p class="control-error">Invalid Form - Please check your input</p>
+    }
   </form>
 </div>

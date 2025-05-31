@@ -5,11 +5,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-create-screen',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButtonModule],
   templateUrl: './create-screen.component.html',
   styleUrl: './create-screen.component.css',
 })
@@ -52,4 +53,12 @@ export class CreateScreenComponent {
       validators: [Validators.required],
     }),
   });
+
+  OnSubmit() {
+    if (this.form.invalid) {
+      console.log('INVALID FORM');
+      return;
+    }
+    console.log(this.form);
+  }
 }
