@@ -10,7 +10,7 @@ const { T1, T2 } = require("../models/bikeModel");
 const getAllBikeDetails = aSyncHandler(async (req, res) => {
   const bikeDetails = await T1.find();
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeDetails);
 });
@@ -39,6 +39,12 @@ const createBikeEntry = aSyncHandler(async (req, res) => {
     !FUEL_TYPE ||
     !BIKE_TYPE
   ) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(400);
     throw new Error("All Fields are Mandatory");
   }
@@ -52,6 +58,9 @@ const createBikeEntry = aSyncHandler(async (req, res) => {
     BIKE_TYPE: BIKE_TYPE,
   });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeEntry);
 });
 
@@ -79,6 +88,12 @@ const updateBikeEntry = aSyncHandler(async (req, res) => {
     !FUEL_TYPE ||
     !BIKE_TYPE
   ) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(400);
     throw new Error("All Fields are Mandatory");
   }
@@ -94,6 +109,9 @@ const updateBikeEntry = aSyncHandler(async (req, res) => {
     new: true,
   });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(updateBikeDetail);
 });
 
@@ -107,12 +125,21 @@ const deleteBikeEntry = aSyncHandler(async (req, res) => {
   const bikeDetail = await T1.findById(req.params.id);
 
   if (!bikeDetail) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(404);
     throw new Error("Bike Model not found in Database");
   }
 
   await T1.deleteOne({ _id: req.params.id });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeDetail);
 });
 
@@ -126,12 +153,18 @@ const getBikeSpecs = aSyncHandler(async (req, res) => {
   const bikeDetail = await T2.findById(req.params.id);
 
   if (!bikeDetail) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(404);
     throw new Error("Bike Model Not present in Database");
   }
 
   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeDetail);
 });
@@ -154,6 +187,12 @@ const createBikeSpecEntry = aSyncHandler(async (req, res) => {
   } = req.body;
 
   if (!BIKE_MODEL) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(400);
     throw new Error("Please enter the Bike Model");
   }
@@ -168,6 +207,9 @@ const createBikeSpecEntry = aSyncHandler(async (req, res) => {
     GEARS: GEARS,
   });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeSpecEntry);
 });
 
@@ -189,6 +231,12 @@ const updateBikeSpecEntry = aSyncHandler(async (req, res) => {
   } = req.body;
 
   if (!BIKE_MODEL) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(400);
     throw new Error("Please enter the Bike Model");
   }
@@ -196,6 +244,12 @@ const updateBikeSpecEntry = aSyncHandler(async (req, res) => {
   const bikeDetail = await T2.findById(req.params.id);
 
   if (!bikeDetail) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(404);
     throw new Error("Bike Model Not present in Database");
   }
@@ -204,6 +258,9 @@ const updateBikeSpecEntry = aSyncHandler(async (req, res) => {
     new: true,
   });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(updatedBikeSpec);
 });
 
@@ -217,12 +274,21 @@ const deleteBikeSpec = aSyncHandler(async (req, res) => {
   const bikeDetail = await T2.findById(req.params.id);
 
   if (!bikeDetail) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE, OPTIONS"
+    );
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.status(404);
     throw new Error("Bike Model not found in Database");
   }
 
   await T2.deleteOne({ _id: req.params.id });
 
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.status(200).json(bikeDetail);
 });
 

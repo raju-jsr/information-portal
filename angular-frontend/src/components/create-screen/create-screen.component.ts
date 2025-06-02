@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiCallService } from '../../services/api-call.service';
+import { Bike } from '../../models/bike.model';
 
 @Component({
   selector: 'app-create-screen',
@@ -15,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './create-screen.component.css',
 })
 export class CreateScreenComponent {
+  apiService = inject(ApiCallService);
+
   form = new FormGroup({
     bikeModel: new FormControl('', {
       validators: [Validators.required],
@@ -59,6 +63,29 @@ export class CreateScreenComponent {
       console.log('INVALID FORM');
       return;
     }
-    console.log(this.form);
+    let bikeDetail: Bike = {
+      bikeModel: this.form.value.bikeModel,
+      parentCompany: this.form.value.parentCompany,
+      launchYear: this.form.value.launchYear,
+      price: this.form.value.price,
+      fuelType: this.form.value.fuelType,
+      bikeType: this.form.value.bikeType,
+      cubicCapacity: this.form.value.cubicCapacity,
+      weight: this.form.value.weight,
+      torque: this.form.value.torque,
+      horsePower: this.form.value.horsePower,
+      mileage: this.form.value.mileage,
+      gears: this.form.value.gears,
+    };
+
+    this.apiService.createBikeEntry(bikeDetail).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
   }
 }
