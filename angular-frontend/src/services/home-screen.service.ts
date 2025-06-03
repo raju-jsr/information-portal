@@ -4,6 +4,7 @@ import { Injectable, signal } from '@angular/core';
 export class HomeScreenService {
   ishomeScreenOnline = signal(true);
   screenMode = signal('');
+  screenBusy = signal(false);
 
   constructor() {}
 
@@ -13,5 +14,9 @@ export class HomeScreenService {
 
   updateScreenMode(mode: string) {
     this.screenMode.set(mode);
+  }
+
+  updateScreenBusy(val: boolean) {
+    this.screenBusy.set(val);
   }
 }

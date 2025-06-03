@@ -1,7 +1,12 @@
 <div class="screen">
   <app-header />
 
-  @if(ishomeScreenOnline() === true) {
+  @if(screenBusy()) {
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  } @if(ishomeScreenOnline() === true) {
   <div class="content-container">
     <h1>Welcome to Rider's Paradise</h1>
     <p>

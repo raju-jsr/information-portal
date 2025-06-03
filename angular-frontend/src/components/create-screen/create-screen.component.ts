@@ -8,6 +8,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { ApiCallService } from '../../services/api-call.service';
 import { Bike } from '../../models/bike.model';
+import { HomeScreenService } from '../../services/home-screen.service';
 
 @Component({
   selector: 'app-create-screen',
@@ -18,6 +19,7 @@ import { Bike } from '../../models/bike.model';
 })
 export class CreateScreenComponent {
   apiService = inject(ApiCallService);
+  homeScreenService = inject(HomeScreenService);
 
   form = new FormGroup({
     bikeModel: new FormControl('', {
@@ -63,6 +65,8 @@ export class CreateScreenComponent {
       console.log('INVALID FORM');
       return;
     }
+
+    this.homeScreenService.updateScreenBusy(true);
     let bikeDetail: Bike = {
       bikeModel: this.form.value.bikeModel,
       parentCompany: this.form.value.parentCompany,
@@ -80,12 +84,16 @@ export class CreateScreenComponent {
 
     this.apiService.createBikeEntry(bikeDetail).subscribe({
       next: (response) => {
+        this.homeScreenService.updateScreenBusy(false);
         console.log(response);
       },
       error: (error) => {
+        this.homeScreenService.updateScreenBusy(false);
         console.log(error);
       },
-      complete: () => {},
+      complete: () => {
+        this.homeScreenService.updateScreenBusy(false);
+      },
     });
   }
 }

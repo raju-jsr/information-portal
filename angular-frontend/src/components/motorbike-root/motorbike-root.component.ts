@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { ApiCallService } from '../../services/api-call.service';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeScreenService } from '../../services/home-screen.service';
 
 @Component({
   selector: 'app-motorbike-root',
@@ -12,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class MotorbikeRootComponent implements OnInit {
   apiCallService = inject(ApiCallService);
+  homeScreenService = inject(HomeScreenService);
+
   bikeList: any;
   bikeColumnMapping = {
     BIKE_MODEL: 'Model',
@@ -26,14 +29,19 @@ export class MotorbikeRootComponent implements OnInit {
   bikeColumnMappingArray = Object.keys(this.bikeColumnMapping);
 
   ngOnInit() {
+    this.homeScreenService.updateScreenBusy(true);
     this.apiCallService.getBikeDetails().subscribe({
       next: (response) => {
+        this.homeScreenService.updateScreenBusy(false);
         this.bikeList = response;
       },
       error: (error) => {
         console.log(error);
+        this.homeScreenService.updateScreenBusy(false);
       },
-      complete: () => {},
+      complete: () => {
+        this.homeScreenService.updateScreenBusy(false);
+      },
     });
   }
 
